@@ -2,6 +2,7 @@ package Results
 
 import org.example.Heuristics.AverageWaste
 import org.example.Heuristics.GreedyWaste
+import org.example.Heuristics.MinSlabs
 import org.example.InstanceLoader
 import org.example.Solver.incomplete.BeamSearchSolver
 import org.example.Solver.incomplete.GreedySearchSolver
@@ -21,8 +22,8 @@ fun main() {
     println("Slab-Kapazitäten: $slabCapacities")
 
     val heuristics = listOf(
-        AverageWaste,
-        GreedyWaste
+        MinSlabs,
+        AverageWaste
     )
 
     val selectionStrategies = listOf(

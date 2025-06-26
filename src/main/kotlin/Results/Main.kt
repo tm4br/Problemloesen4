@@ -20,9 +20,9 @@ fun main() {
     val heuristics = listOf(
         AverageWaste,
         LargestGap,
-        GreedyWaste,
-        MinSlabs,
-        BestFit
+        //GreedyWaste,
+        MinSlabs
+        //BestFit
     )
 
     val selectionStrategies = listOf(

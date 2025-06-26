@@ -16,9 +16,8 @@ class RandomSearchSolver(
 ) : BaseSolver(orders, slabCapacities) {
 
     /**
-     * Auswahl durch Zufall
-     * -> möglicherweise keine Lösung
-     * -> dafür schneller
+     * Zufällie Suche
+     * generiert zufällig Zustände und wählt den besten aus
      */
     override fun solve(): State? {
         val initialState = State(

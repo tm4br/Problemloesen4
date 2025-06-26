@@ -12,7 +12,7 @@ fun main() {
     val heuristic = MinSlabs  // Für RandomSearch: beliebige Heuristik, wird aber nicht „geführt“
     val variableSelection = LargestOrderFirst // Für RandomSearch: keine echte Bedeutung, aber nötig zur Signatur
 
-    val iterationValues = listOf(10, 50, 100, 300, 500, 1000, 5000, 10000)
+    val iterationValues = listOf(1) + (5..100 step 5).toList()
 
     println("RandomSearch Benchmark (111Orders.txt)")
     println("------------------------------------------------------------")

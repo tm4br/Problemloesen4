@@ -2,6 +2,7 @@ import org.example.Heuristics.MinSlabs
 import org.example.InstanceLoader
 import org.example.Solver.incomplete.BeamSearchSolver
 import org.example.State
+import org.example.VariableSelection.LargestOrderFirst
 import org.example.VariableSelection.MostFrequentColorLargestFirst
 import kotlin.system.measureTimeMillis
 
@@ -9,10 +10,10 @@ fun main() {
     val filePath = "src/main/resources/111Orders.txt"
     val (orders, _, slabCapacities) = InstanceLoader.load111Order(filePath)
 
-    val heuristic = MinSlabs  // oder z. B. GreedyWaste, falls du verschiedene testen willst
-    val variableSelection = MostFrequentColorLargestFirst
+    val heuristic = MinSlabs
+    val variableSelection = LargestOrderFirst
 
-    val beamWidths = listOf(1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 5000)
+    val beamWidths = listOf(1, 2, 5, 10, 20, 50, 100, 200, 500, 1000)
 
     println("BeamSearch Benchmark (111Orders.txt)")
     println("------------------------------------------------------------")

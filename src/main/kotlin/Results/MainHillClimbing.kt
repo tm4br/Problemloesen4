@@ -10,7 +10,8 @@ fun main() {
     val (orders, _, slabCapacities) = InstanceLoader.load111Order(filePath)
 
     val heuristic = MinSlabs
-    val maxIterationsList = listOf(10, 50, 100, 500, 1000, 5000, 10000, 20000, 50000)
+    //val maxIterationsList = listOf(1, 10, 50, 100, 500, 1000, 5000, 10000, 20000, 50000)
+    val maxIterationsList = listOf(1) + (5..50 step 5).toList()
 
     println("HillClimbing Benchmark (111Orders.txt)")
     println("------------------------------------------------------------")
