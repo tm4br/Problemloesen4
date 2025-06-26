@@ -1,17 +1,21 @@
-package org.example
+package org.example.Solver.complete
 
 import org.example.Heuristics.Heuristic
+import org.example.Order
+import org.example.Slab
+import org.example.Solver.BaseSolver
+import org.example.State
 import org.example.VariableSelection.VariableSelectionHeuristic
 import java.util.PriorityQueue
 
-class Solver(
-    private val orders: List<Order>,
-    private val slabCapacities: List<Int>,
+class CompleteSolver(
+    orders: List<Order>,
+    slabCapacities: List<Int>,
     private val heuristic: Heuristic,
     private val variableSelection: VariableSelectionHeuristic
-) {
+): BaseSolver(orders, slabCapacities) {
 
-    fun solve(): State? {
+    override fun solve(): State? {
         /** Initialzustand: keine Order zugewiesen, keine Slabs */
         val initialState = State(
             orderAssignments = emptyMap(),
@@ -45,7 +49,7 @@ class Solver(
         return null /* Kein Zielzustand gefunden*/
     }
 
-    fun generateSuccessors(state: State): List<State> {
+    override fun generateSuccessors(state: State): List<State> {
         val successors = mutableListOf<State>()
 
         /** Nächster noch nicht zugewiesener Auftrag*/
@@ -99,28 +103,6 @@ class Solver(
             }
         }
         return successors
-    }
-
-    /**
-     * Überprüft, ob ein Auftrag zu einem Slab hinzugefügt werden kann:
-     * - Farbe muss einzigartig sein
-     * - Kapazität darf nicht überschritten werden
-     */
-    fun canAddOrderToSlab(order: Order, slab: Slab): Boolean {
-        val colors = slab.assignedOrders.map { it.color }.toSet()
-        val totalSize = slab.assignedOrders.sumOf { it.size }
-        return (order.color !in colors) && (totalSize + order.size <= slab.capacity)
-    }
-
-    /**
-     * Berechnet den Gesamtverschnitt aller aktuell belegten Slabs
-     */
-    fun calculateWaste(slabs: Map<Int, Slab>): Int {
-        return slabs.values.sumOf { slab ->
-            val used = slab.assignedOrders.sumOf { it.size }
-            val waste = slab.capacity - used
-            maxOf(0,waste)
-        }
     }
 }
 

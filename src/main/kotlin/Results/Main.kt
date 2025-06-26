@@ -1,6 +1,7 @@
 package org.example
 
 import org.example.Heuristics.*
+import org.example.Solver.incomplete.BeamSearchSolver
 import org.example.VariableSelection.LargestOrderFirst
 import org.example.VariableSelection.MostFrequentColorFirst
 import org.example.VariableSelection.MostFrequentColorLargestFirst
@@ -26,9 +27,7 @@ fun main() {
 
     val selectionStrategies = listOf(
         LargestOrderFirst,
-        MostFrequentColorFirst,
         //SmallestOrderFirst,
-        MostFrequentColorLargestFirst,
         TightestFitOrderFirst
     )
 
@@ -40,7 +39,7 @@ fun main() {
 
     for (heuristic in heuristics) {
         for (selection in selectionStrategies) {
-            val solver = Solver(orders, slabCapacities, heuristic, selection)
+            val solver = BeamSearchSolver(orders, slabCapacities, heuristic, selection)
 
             var solution: State? = null
             val time = measureTimeMillis {
